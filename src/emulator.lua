@@ -1,5 +1,7 @@
 -- ARMv7 Emulator
 -- Quick Spec: https://courses.cs.washington.edu/courses/cse469/20wi/armv7.pdf
+--
+-- Cortex A Programming Guide: https://developer.arm.com/documentation/den0013/d/Introduction-to-Assembly-Language/Comparison-with-other-assembly-languages
 
 local util = require "src/utility"
 local Word = require "src/word"
