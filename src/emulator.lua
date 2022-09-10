@@ -5,24 +5,33 @@
 
 local util = require "src/utility"
 local Word = require "src/word"
+local ibf = require "src/consts/instruction_bit_fields"
 
-local function emulate()
-    local instructions = {
+local Emulator = {}
+
+function Emulator:new() 
+    local obj = setmetatable({}, self)
+    self.__index = self
+    return obj
+end
+
+function Emulator:emulate()
+    self.instructions = {
         0b00000000000000000000000000000000,
         0b11110000000000000000000000000000,
         0b00001110000000000000000000000000,
         0b00000000000000000000000000010000,
     }
 
-    for _, w in ipairs(instructions) do
+    for _, w in ipairs(self.instructions) do
         local word = Word:new(w)
         print(word:stringify())
-        print(util.tobinary32(word:cond()))
-        print(util.tobinary32(word:op1()))
-        print(util.tobinary32(word:op()))
+        print(util.tobinary32(word:extract(ibf.ARM_COND_SHIFT, ibf.ARM_COND_WIDTH)))
+        print(util.tobinary32(word:extract(ibf.ARM_OP1_SHIFT, ibf.ARM_OP1_WIDTH)))
+        print(util.tobinary32(word:extract(ibf.ARM_OP_SHIFT, ibf.ARM_OP_WIDTH)))
     end
 
     return 0
 end
 
-return { emulate = emulate }
+return Emulator

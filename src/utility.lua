@@ -23,4 +23,16 @@ local function tobinary32(int)
     return "0b" .. table.concat(bits)
 end
 
+local function tobinary16(int)
+    temp = int
+    bits = {}
+    for i=1,16 do
+        bits[17 - i] = tostring(bit32.extract(temp, 0, 1))
+        temp = bit32.lshift(temp, -1)
+    end
+
+    return "0b" .. table.concat(bits)
+end
+
+
 return { readOnlyTable = readOnly, tobinary32 = tobinary32 }

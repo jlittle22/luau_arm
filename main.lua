@@ -1,7 +1,9 @@
-local emulator = require "src/emulator"
+local Emulator = require "src/emulator"
 
 function main()
-    return emulator.emulate()
+    local e = Emulator:new()
+
+    return e:emulate()
 end
 
 print("ret: ", main())
