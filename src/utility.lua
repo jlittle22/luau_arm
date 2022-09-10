@@ -1,3 +1,4 @@
+-- Random utitility functions
 
 local function readOnly(t)
     local proxy = {}
@@ -22,4 +23,4 @@ local function tobinary32(int)
     return "0b" .. table.concat(bits)
 end
 
-return { readOnlyTable = readOnly }
+return { readOnlyTable = readOnly, tobinary32 = tobinary32 }

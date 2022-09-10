@@ -5,13 +5,20 @@ local util = require "src/utility"
 local Word = require "src/word"
 
 local function emulate()
-    local w = Word:new()
+    local instructions = {
+        0b00000000000000000000000000000000,
+        0b11110000000000000000000000000000,
+        0b00001110000000000000000000000000,
+        0b00000000000000000000000000010000,
+    }
 
-    print("w: ", w:stringify())
-
-    local b = Word:new(255)
-
-    print("b: ", b:stringify())
+    for _, w in ipairs(instructions) do
+        local word = Word:new(w)
+        print(word:stringify())
+        print(util.tobinary32(word:cond()))
+        print(util.tobinary32(word:op1()))
+        print(util.tobinary32(word:op()))
+    end
 
     return 0
 end

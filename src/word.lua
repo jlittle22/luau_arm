@@ -27,15 +27,15 @@ function Word:new(bits)
 end
 
 function Word:cond()
-    return bit32.extract(self.bits, const[COND_SHIFT], const[COND_WIDTH])
+    return bit32.extract(self.bits, const.COND_SHIFT, const.COND_WIDTH)
 end
 
 function Word:op1()
-    return bit32.extract(self.bits, const[OP1_SHIFT], const[OP1_WIDTH])
+    return bit32.extract(self.bits, const.OP1_SHIFT, const.OP1_WIDTH)
 end
 
 function Word:op()
-    return bit32.extract(self.bits, const[OP_SHIFT], const[OP_WIDTH])
+    return bit32.extract(self.bits, const.OP_SHIFT, const.OP_WIDTH)
 end
 
 -- Utility Functions --
@@ -43,7 +43,7 @@ end
 function Word:stringify()
     str = "{ "
     for key, val in pairs(self) do
-        str ..= (key .. " = " .. tostring(val) .. ", ")
+        str ..= (key .. " = " .. util.tobinary32(val) .. ", ")
     end
     str = str:sub(1, -3)
     str ..= " }"
