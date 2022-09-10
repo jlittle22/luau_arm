@@ -1,5 +1,5 @@
 # Luau Arm Emulator
-## Jake Little & David Wilson
+_Jake Little & David Wilson_
 
 ### Run
 `luau main.lua`
