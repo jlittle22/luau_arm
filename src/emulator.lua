@@ -4,14 +4,19 @@
 -- Cortex A Programming Guide: https://developer.arm.com/documentation/den0013/d/Introduction-to-Assembly-Language/Comparison-with-other-assembly-languages
 
 local util = require "src/utility"
-local Word = require "src/word"
+local Word = require "src/components/word"
 local ibf = require "src/consts/instruction_bit_fields"
+local reg = require "src/consts/registers"
+local cpsr = require "src/components/cpsr"
 
 local Emulator = {}
 
 function Emulator:new() 
     local obj = setmetatable({}, self)
     self.__index = self
+
+    obj.CPSR = cpsr:new()
+    
     return obj
 end
 
