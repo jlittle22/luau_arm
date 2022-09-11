@@ -8,6 +8,7 @@ local Word = require "src/components/word"
 local ibf = require "src/consts/instruction_bit_fields"
 local reg = require "src/consts/registers"
 local cpsr = require "src/components/cpsr"
+local gpr = require "src/components/gpr"
 
 local Emulator = {}
 
@@ -16,7 +17,8 @@ function Emulator:new()
     self.__index = self
 
     obj.CPSR = cpsr:new()
-    
+    obj.R = gpr:new()
+
     return obj
 end
 
